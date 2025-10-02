@@ -1,13 +1,13 @@
 {
-  "author": "Playwright",
-  "description": "Loop technical evaluation.",
+  "author": "Roth Earl",
+  "description": "LoopQA technical evaluation.",
   "license": "ISC",
-  "name": "playwright",
+  "name": "loopqa-technical-evaluation",
   "version": "1.0.0",
   "scripts": {
     "compile": "tsc --noEmit -p tsconfig.json",
     "lint": "npx eslint tests",
-    "test:demo.chromium": "npx playwright test --project='chromium'",
+    "test:demo.chromium": "npx playwright test --project='chromium' --headed",
     "test:demo.firefox": "npx playwright test --project='firefox'",
     "test:demo": "npx playwright test",
     "test:report": "npx playwright show-report"
