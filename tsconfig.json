@@ -1,0 +1,53 @@
+{
+    "compilerOptions": {
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "alwaysStrict": true,
+        "baseUrl": ".",
+        "declaration": true,
+        "esModuleInterop": true,
+        "exactOptionalPropertyTypes": true,
+        "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "inlineSourceMap": true,
+        "inlineSources": true,
+        "isolatedModules": true,
+        "lib": [
+            "ES2023"
+        ],
+        "module": "NodeNext",
+        "moduleResolution": "nodenext",
+        "noEmit": false,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noPropertyAccessFromIndexSignature": false,
+        "noUncheckedIndexedAccess": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "paths": {
+            "tests/*": [
+                "./test/*"
+            ]
+        },
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "strictBindCallApply": true,
+        "strictBuiltinIteratorReturn": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "target": "ES6",
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+        "useUnknownInCatchVariables": true
+    },
+    "exclude": [
+        "node_modules",
+        "test-results"
+    ]
+}

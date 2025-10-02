@@ -1,0 +1,22 @@
+{
+  "author": "Playwright",
+  "description": "Loop technical evaluation.",
+  "license": "ISC",
+  "name": "playwright",
+  "version": "1.0.0",
+  "scripts": {
+    "compile": "tsc --noEmit -p tsconfig.json",
+    "lint": "npx eslint tests",
+    "test:demo.chromium": "npx playwright test --project='chromium'",
+    "test:demo.firefox": "npx playwright test --project='firefox'",
+    "test:demo": "npx playwright test",
+    "test:report": "npx playwright show-report"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.34.0",
+    "@playwright/test": "1.55.1",
+    "@types/node": "24.6.2",
+    "eslint": "9.34.0",
+    "typescript-eslint": "8.41.0"
+  }
+}
