@@ -14,9 +14,19 @@ const logIn = async (page: Page, username: string, password: string): Promise<vo
 };
 
 /**
+ * Interface for a task test scenario.
+ */
+interface TaskTestScenario {
+    readonly application: string;
+    readonly column: string;
+    readonly task: string;
+    readonly tags: string[];
+}
+
+/**
  * A data set for the Loop Technical Evaluation tests.
  */
-const taskTestScenarios = [
+const taskTestScenarios: TaskTestScenario[] = [
     { application: 'Web Application', column: 'To Do', task: 'Implement user authentication', tags: ['Feature', 'High Priority'] },
     { application: 'Web Application', column: 'To Do', task: 'Fix navigation bug', tags: ['Bug'] },
     { application: 'Web Application', column: 'In Progress', task: 'Design system updates', tags: ['Design'] },
