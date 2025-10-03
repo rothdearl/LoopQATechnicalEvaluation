@@ -1,19 +1,6 @@
 import { Page, expect, test } from '@playwright/test';
 
 /**
- * Logs in to the demo application.
- *
- * @param page The web page reference.
- * @param username The username.
- * @param password The password.
- */
-const logIn = async (page: Page, username: string, password: string): Promise<void> => {
-    await page.locator('#username').fill(username);
-    await page.locator('#password').fill(password);
-    await page.locator('button').click();
-};
-
-/**
  * Interface for a task test scenario.
  */
 interface TaskTestScenario {
@@ -35,6 +22,20 @@ const taskTestScenarios: TaskTestScenario[] = [
     { application: 'Mobile Application', column: 'Done', task: 'App icon design', tags: ['Design'] }
 ];
 
+/**
+ * Logs in to the demo application.
+ *
+ * @param page The web page reference.
+ * @param username The username.
+ * @param password The password.
+ */
+const logIn = async (page: Page, username: string, password: string): Promise<void> => {
+    await page.goto('');
+    await page.locator('#username').fill(username);
+    await page.locator('#password').fill(password);
+    await page.locator('button').click();
+};
+
 test.describe('Loop Technical Evaluation tests', () => {
     // Username and password should be stored in a .env file but for the purposes of this demo, the credentials will be hard-coded.
     const USERNAME = 'admin';
@@ -47,8 +48,6 @@ test.describe('Loop Technical Evaluation tests', () => {
      */
     for (const testScenario of taskTestScenarios) {
         test(`Verify task: ${testScenario.task}`, async ({ page }) => {
-            // Log in.
-            await page.goto('');
             await logIn(page, USERNAME, PASSWORD);
 
             // Select application.
@@ -62,6 +61,7 @@ test.describe('Loop Technical Evaluation tests', () => {
             for (const c of columns) {
                 const columnName = await c.locator('h2').textContent();
 
+                // Column names include the total number of tasks, so use startsWith.
                 if (columnName?.startsWith(testScenario.column)) {
                     column = c;
                     break;
