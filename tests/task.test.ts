@@ -1,9 +1,9 @@
 import { Page, expect, test } from '@playwright/test';
 
 /**
- * Interface for a task test scenario.
+ * Interface for a task test case.
  */
-interface TaskTestScenario {
+interface TaskTestCase {
     readonly application: string;
     readonly column: string;
     readonly task: string;
@@ -13,7 +13,7 @@ interface TaskTestScenario {
 /**
  * A data set for the Loop Technical Evaluation tests.
  */
-const taskTestScenarios: TaskTestScenario[] = [
+const taskTestCases: TaskTestCase[] = [
     { application: 'Web Application', column: 'To Do', task: 'Implement user authentication', tags: ['Feature', 'High Priority'] },
     { application: 'Web Application', column: 'To Do', task: 'Fix navigation bug', tags: ['Bug'] },
     { application: 'Web Application', column: 'In Progress', task: 'Design system updates', tags: ['Design'] },
@@ -42,16 +42,16 @@ test.describe('Loop Technical Evaluation tests', () => {
     const PASSWORD = 'password123';
 
     /**
-     * For each test scenerio, run test.
+     * For each test case, run test.
      * A test is successful if the expected column and task can be found and the task has the expected tags.
      * Further refinement could include moving the get task column and get task into methods for reusability.
      */
-    for (const testScenario of taskTestScenarios) {
-        test(`Verify task: ${testScenario.task}`, async ({ page }) => {
+    for (const testCase of taskTestCases) {
+        test(`Verify task: ${testCase.task}`, async ({ page }) => {
             await logIn(page, USERNAME, PASSWORD);
 
             // Select application.
-            await page.getByRole('button', { name: testScenario.application }).click();
+            await page.getByRole('button', { name: testCase.application }).click();
 
             // Get the task column.
             const taskBoard = page.locator('.inline-flex');
@@ -62,7 +62,7 @@ test.describe('Loop Technical Evaluation tests', () => {
                 const columnName = await c.locator('h2').textContent();
 
                 // Column names include the total number of tasks, so use startsWith.
-                if (columnName?.startsWith(testScenario.column)) {
+                if (columnName?.startsWith(testCase.column)) {
                     column = c;
                     break;
                 }
@@ -80,7 +80,7 @@ test.describe('Loop Technical Evaluation tests', () => {
                 for (const t of tasks) {
                     const taskName = await t.locator('h3').textContent();
 
-                    if (taskName === testScenario.task) {
+                    if (taskName === testCase.task) {
                         task = t;
                         break;
                     }
@@ -94,10 +94,10 @@ test.describe('Loop Technical Evaluation tests', () => {
                     const div = task.locator('div').first();
                     const tags = await div.locator('span').all();
 
-                    expect(tags.length).toEqual(testScenario.tags?.length);
+                    expect(tags.length).toEqual(testCase.tags?.length);
 
                     for (const tag of tags) {
-                        expect(testScenario.tags).toContain(await tag.textContent());
+                        expect(testCase.tags).toContain(await tag.textContent());
                     }
                 }
             }
