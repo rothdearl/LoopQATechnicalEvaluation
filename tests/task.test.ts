@@ -11,7 +11,7 @@ interface TaskTestCase {
 }
 
 /**
- * A data set for the Loop Technical Evaluation tests.
+ * A data set for the LoopQA Technical Evaluation tests.
  */
 const taskTestCases: TaskTestCase[] = [
     { application: 'Web Application', column: 'To Do', task: 'Implement user authentication', tags: ['Feature', 'High Priority'] },
@@ -36,7 +36,7 @@ const logIn = async (page: Page, username: string, password: string): Promise<vo
     await page.locator('button').click();
 };
 
-test.describe('Loop Technical Evaluation tests', () => {
+test.describe('LoopQA Technical Evaluation tests', () => {
     // Username and password should be stored in a .env file but for the purposes of this demo, the credentials will be hard-coded.
     const USERNAME = 'admin';
     const PASSWORD = 'password123';
